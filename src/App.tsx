@@ -687,8 +687,8 @@ export default function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-transparent selection:bg-orange-500/30 selection:text-orange-200 relative overflow-x-hidden">
-      <BackgroundAnimation />
+    <div className="portfolio-app min-h-screen bg-transparent selection:bg-orange-500/30 selection:text-orange-200 relative overflow-x-hidden">
+      <div className="portfolio-backdrop" aria-hidden="true" />
 
       {/* Image Modal Preview */}
       <AnimatePresence>
@@ -731,7 +731,7 @@ export default function App() {
       </AnimatePresence>
 
       <div
-        className={`relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-24 ${view === "home" ? "grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-12 lg:gap-24" : "flex flex-col items-center"}`}
+        className={`portfolio-frame ${view === "home" ? "portfolio-home" : "portfolio-inner"} relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-24 ${view === "home" ? "grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-12 lg:gap-24" : "flex flex-col items-center"}`}
       >
         {/* Sidebar for Home, Centered Header for others */}
         {view === "home" ? (
@@ -739,7 +739,7 @@ export default function App() {
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="space-y-8 lg:sticky lg:top-8 h-fit z-30 flex flex-col items-center lg:items-start text-center lg:text-left"
+            className="portfolio-sidebar space-y-8 lg:sticky lg:top-8 h-fit z-30 flex flex-col items-center lg:items-start text-center lg:text-left"
           >
             <div className="space-y-8 flex flex-col items-center lg:items-start">
               <div className="space-y-4 flex flex-col items-center lg:items-start">
@@ -817,7 +817,7 @@ export default function App() {
           <motion.header
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            className="text-center mb-24 space-y-8"
+            className="portfolio-page-header text-left mb-24 space-y-8"
           >
             <div className="space-y-4">
               <h1 className="text-4xl md:text-6xl font-display font-bold tracking-tighter text-white">
@@ -847,7 +847,7 @@ export default function App() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.4 }}
-              className="space-y-24"
+              className="portfolio-main space-y-24"
             >
               <section className="space-y-8">
                 <motion.div variants={itemVariants}>
@@ -855,7 +855,7 @@ export default function App() {
                     <span>Core Hard Skills</span>
                     <span className="h-px flex-1 bg-white/5"></span>
                   </h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="skill-grid grid grid-cols-1 md:grid-cols-2 gap-4">
                     {groupedSkills.map((group) => (
                       <div
                         key={group.category}
@@ -1146,7 +1146,7 @@ export default function App() {
                 </p>
               </div>
 
-              <div className="flex flex-wrap justify-center gap-6">
+              <div className="portfolio-category-grid grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
                 {portfolioCategories.map((cat) => (
                   <button
                     key={cat.id}
